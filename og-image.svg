@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D8D2EE" stroke-width="1"></path>
+    </pattern>
+    <pattern id="grid-strong" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M 200 0 L 0 0 0 200" fill="none" stroke="#C4BCE0" stroke-width="1"></path>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7C72B5"></path>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="#F8F6FB"></rect>
+  <rect width="1200" height="630" fill="url(#grid)"></rect>
+  <rect width="1200" height="630" fill="url(#grid-strong)"></rect>
+
+  <text x="80" y="135" font-family="IBM Plex Sans, sans-serif" font-weight="300" font-size="72" fill="#1E1A3D" letter-spacing="-1.5">Design the</text>
+  <text x="410" y="135" font-family="Instrument Serif, Times, serif" font-style="italic" font-size="80" fill="#3D2F8C">loop</text>
+  <text x="530" y="135" font-family="IBM Plex Sans, sans-serif" font-weight="300" font-size="72" fill="#1E1A3D">your</text>
+
+  <text x="80" y="225" font-family="IBM Plex Sans, sans-serif" font-weight="300" font-size="72" fill="#1E1A3D" letter-spacing="-1.5">agent</text>
+  <text x="320" y="225" font-family="IBM Plex Sans, sans-serif" font-weight="300" font-size="72" fill="#1E1A3D">runs</text>
+  <text x="540" y="225" font-family="Instrument Serif, Times, serif" font-style="italic" font-size="80" fill="#3D2F8C">on.</text>
+
+  <text x="80" y="295" font-family="IBM Plex Mono, monospace" font-size="22" fill="#564E80" letter-spacing="0">Perceive. Reason. Decide. Act. Verify. Recover. Repeat.</text>
+
+  <g transform="translate(600, 400)">
+    <circle cx="0" cy="0" r="150" fill="none" stroke="#C4BCE0" stroke-width="1.5" stroke-dasharray="3 6"></circle>
+
+    <path d="M 0 -150 A 150 150 0 0 1 129.9 -75" fill="none" stroke="#7C72B5" stroke-width="2" marker-end="url(#arrow)"></path>
+    <path d="M 129.9 -75 A 150 150 0 0 1 129.9 75" fill="none" stroke="#7C72B5" stroke-width="2" marker-end="url(#arrow)"></path>
+    <path d="M 129.9 75 A 150 150 0 0 1 0 150" fill="none" stroke="#7C72B5" stroke-width="2" marker-end="url(#arrow)"></path>
+    <path d="M 0 150 A 150 150 0 0 1 -129.9 75" fill="none" stroke="#7C72B5" stroke-width="2" marker-end="url(#arrow)"></path>
+    <path d="M -129.9 75 A 150 150 0 0 1 -129.9 -75" fill="none" stroke="#7C72B5" stroke-width="2" marker-end="url(#arrow)"></path>
+    <path d="M -129.9 -75 A 150 150 0 0 1 0 -150" fill="none" stroke="#7C72B5" stroke-width="2" marker-end="url(#arrow)"></path>
+
+    <g>
+      <circle cx="0" cy="-150" r="26" fill="#F4F2FA" stroke="#5B4FC7" stroke-width="1.5"></circle>
+      <text x="0" y="-145" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#3D2F8C">PERCEIVE</text>
+    </g>
+    <g>
+      <circle cx="129.9" cy="-75" r="26" fill="#F4F2FA" stroke="#5B4FC7" stroke-width="1.5"></circle>
+      <text x="129.9" y="-70" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#3D2F8C">REASON</text>
+    </g>
+    <g>
+      <circle cx="129.9" cy="75" r="26" fill="#F4F2FA" stroke="#5B4FC7" stroke-width="1.5"></circle>
+      <text x="129.9" y="80" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#3D2F8C">DECIDE</text>
+    </g>
+    <g>
+      <circle cx="0" cy="150" r="26" fill="#F4F2FA" stroke="#5B4FC7" stroke-width="1.5"></circle>
+      <text x="0" y="155" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#3D2F8C">ACT</text>
+    </g>
+    <g>
+      <circle cx="-129.9" cy="75" r="26" fill="#F4F2FA" stroke="#5B4FC7" stroke-width="1.5"></circle>
+      <text x="-129.9" y="80" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#3D2F8C">VERIFY</text>
+    </g>
+    <g>
+      <circle cx="-129.9" cy="-75" r="26" fill="#F4F2FA" stroke="#5B4FC7" stroke-width="1.5"></circle>
+      <text x="-129.9" y="-70" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#3D2F8C">RECOVER</text>
+    </g>
+
+    <circle cx="0" cy="0" r="4" fill="#1E1A3D"></circle>
+  </g>
+
+  <text x="1030" y="590" font-family="IBM Plex Mono, monospace" font-size="16" fill="#7C72B5" text-anchor="end">designaloop.com</text>
+</svg>

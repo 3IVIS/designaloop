@@ -1,0 +1,37 @@
+# Design a Loop
+
+> The discipline of loop engineering — designing the iterative perceive, reason, decide, act, verify, recover cycle an AI agent runs on every turn, instead of letting one emerge by accident.
+
+Design a Loop is a content site, not a product. It teaches loop engineering and points to **Build A Harness** (https://buildaharness.com), the open-source tool that implements it: a visual canvas plus four framework adapters plus built-in Langfuse observability, covering a complete AI agent loop — world model, control state, verification, recovery, and cross-run learning. The full loop (22 nodes) is implemented and tested (379 tests passing).
+
+## Loop engineering
+
+Loop engineering is the discipline of designing the iterative cycle an AI agent runs on every turn: what it perceives, what it believes, what it is allowed to do, how it verifies its own output, and how it recovers when a step fails — before looping back and doing it again.
+
+Every agent that does more than answer a single question is already running on a loop, whether anyone designed one or not. Left undesigned, that loop degrades in predictable ways: it retries forever when a tool fails, it drifts as early mistakes compound across iterations, it loses track of what it already tried, and it can't tell the difference between "done" and "stuck."
+
+**Loop engineering vs prompt engineering**: Prompt engineering optimises a single model call. Loop engineering designs what happens between calls — the state carried forward, the stopping condition, the verification each pass, and the recovery path when a pass fails. In production, loop-level design accounts for the large majority of agent reliability gains; prompt refinement beyond a reasonable baseline accounts for a small fraction.
+
+**Loop engineering vs a workflow**: A workflow is a straight line — input, LLM call, tool call, output, done once. A loop is designed to run an unknown number of times, carrying state forward and deciding after each pass whether to continue, escalate, retry, or stop.
+
+**Loop engineering vs harness engineering**: The same discipline, two names. Harness engineering (see https://buildaharness.com/harness-engineering) emphasizes the constraint structure around the model. Loop engineering emphasizes the iterative cycle that structure runs on. Build A Harness implements both views at once.
+
+**The seven stages of an engineered loop**: Perceive (world model) → Reason (evidence + hypotheses) → Decide (control state) → Act (reversibility-aware execution) → Verify (9 verification layers + adversarial review) → Recover (named recovery strategies) → Learn & Repeat (experience store, loop back to Perceive).
+
+**Dedicated page**: https://designaloop.com/loop-engineering
+
+## The tool: Build A Harness
+
+Build A Harness is the open-source visual canvas that implements a fully engineered loop as drawable, composable nodes. It provides a visual canvas with 27 node types (14 execution + 13 loop-control nodes), compiles to LangGraph, CrewAI, Mastra, or Microsoft Agent Framework via the runtime-neutral FlowSpec format, and includes built-in Langfuse observability, HITL controls, and REST/MCP/A2A deployment. Apache 2.0, runs locally via Docker.
+
+- **Site**: https://buildaharness.com
+- **Repository**: https://github.com/3IVIS/buildaharness
+- **Quick start**: `git clone https://github.com/3IVIS/buildaharness.git && cd buildaharness && ./scripts/setup-env.sh && docker compose up`
+
+## Who is this for?
+
+Engineers and teams building AI agents that need to survive more than a demo: anything that calls a model more than once per task, uses tools, or needs to keep running until a real stopping condition is met rather than a fixed number of steps.
+
+## License
+
+Apache 2.0 (the tool). This content site is published by 3IVIS.

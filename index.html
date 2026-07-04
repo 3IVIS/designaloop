@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Klaro Consent Management -->
+<script type="text/javascript">
+  var klaroConfig = {
+    storageMethod: 'cookie',
+    cookieName: 'klaro',
+    cookieExpiresAfterDays: 365,
+    privacyPolicy: '/privacy.html',
+    default: false,
+    mustConsent: false,
+    acceptAll: true,
+    hideDeclineAll: false,
+    hideLearnMore: false,
+    noticeAsModal: false,
+    translations: {
+      en: {
+        consentModal: {
+          title: 'Design a Loop — We value your privacy',
+          description: 'Here you can see and customize the information that we collect about you.',
+        },
+        decline: 'Reject all',
+        ok: 'Accept all',
+        analytics: {
+          description: 'Collection of information about how visitors use our website.',
+        },
+        purposes: {
+          analytics: 'Analytics',
+        },
+      },
+    },
+    services: [
+      {
+        name: 'analytics',
+        title: 'Analytics & Tracking',
+        purposes: ['analytics'],
+        required: false,
+      },
+    ],
+  };
+</script>
+<script defer src="https://cdn.kiprotect.com/klaro/v0.7.18/klaro.js"></script>
+<!-- Google tag (gtag.js) — loaded only after analytics consent via Klaro above -->
+<script async type="text/plain" data-type="text/javascript" data-name="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script type="text/plain" data-type="text/javascript" data-name="analytics">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design a Loop — The Discipline of Engineering Reliable AI Agent Loops</title>
+
+<meta name="description" content="Every AI agent runs on a loop. Design a Loop teaches loop engineering — designing the perceive, reason, decide, act, verify, recover cycle on purpose — and points to Build A Harness, the open-source tool that builds it.">
+
+<link rel="canonical" href="https://designaloop.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://designaloop.com/">
+<meta property="og:site_name" content="Design a Loop">
+<meta property="og:title" content="Design a Loop — The Discipline of Engineering Reliable AI Agent Loops">
+<meta property="og:description" content="Every AI agent runs on a loop. Design a Loop teaches loop engineering — designing the perceive, reason, decide, act, verify, recover cycle on purpose.">
+<meta property="og:image" content="https://designaloop.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Design a Loop — the discipline of engineering the iterative cycle behind AI agents.">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Design a Loop — The Discipline of Engineering Reliable AI Agent Loops">
+<meta name="twitter:description" content="Every AI agent runs on a loop. Design a Loop teaches loop engineering — the discipline of designing that cycle on purpose.">
+<meta name="twitter:image" content="https://designaloop.com/og-image.png">
+<meta name="twitter:image:alt" content="Design a Loop — the discipline of engineering the iterative cycle behind AI agents.">
+
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="3IVIS">
+<meta name="keywords" content="loop engineering, agent loop, AI agent loop, agentic loop, reasoning loop, AI agent reliability, harness engineering, open source, FlowSpec">
+
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt — structured summary for LLMs">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#3D2F8C">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://designaloop.com/#website",
+      "url": "https://designaloop.com/",
+      "name": "Design a Loop",
+      "description": "The discipline of loop engineering — designing the iterative cycle an AI agent runs on every turn.",
+      "publisher": { "@id": "https://designaloop.com/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://designaloop.com/#org",
+      "name": "3IVIS",
+      "url": "https://github.com/3IVIS",
+      "sameAs": ["https://github.com/3IVIS/buildaharness", "https://buildaharness.com"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is loop engineering?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Loop engineering is the discipline of designing the iterative cycle an AI agent runs on every turn — perceive, reason, decide, act, verify, recover, repeat — instead of letting one emerge by accident." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is loop engineering the same as harness engineering?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, two names for the same discipline. Harness engineering emphasizes the constraint structure around the model; loop engineering emphasizes the iterative cycle that structure runs on. Build A Harness is the open-source tool that implements both." }
+        },
+        {
+          "@type": "Question",
+          "name": "What tool do I use to build a loop?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Build A Harness — an open-source visual canvas that implements a fully engineered agent loop as drawable nodes, and compiles to LangGraph, CrewAI, Mastra, or Microsoft Agent Framework. Apache 2.0, runs locally via Docker." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --bg:oklch(.972 .008 270);
+  --bg-2:oklch(.948 .012 270);
+  --paper:oklch(.985 .008 270);
+  --ink:oklch(.19 .024 270);
+  --ink-2:oklch(.37 .02 270);
+  --ink-3:oklch(.55 .018 270);
+  --line:oklch(.84 .014 270);
+  --accent:oklch(.46 .16 268);
+  --accent-ink:oklch(.36 .16 270);
+  --green:oklch(.38 .12 148);
+  --green-tint:oklch(.93 .04 148);
+}
+
+*{box-sizing:border-box}
+
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);}
+
+body{
+  font-family:"IBM Plex Sans",sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+.prose{max-width:740px;}
+
+/* header */
+header{border-bottom:1px solid var(--line);background:var(--paper);}
+.site-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);}
+.brand .name{font-family:"IBM Plex Mono",monospace;font-size:15px;white-space:nowrap;}
+.nav{display:flex;gap:22px;font-family:"IBM Plex Mono",monospace;font-size:12px;}
+.nav a{text-decoration:none;color:var(--ink-2);}
+.nav a:hover{color:var(--ink);}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 16px;border-radius:6px;text-decoration:none;
+  background:var(--ink);color:white;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;
+  border:1px solid var(--ink);
+}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+.btn-ghost:hover{border-color:var(--ink);}
+
+/* eyebrow */
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;text-transform:uppercase;
+  font-size:11px;letter-spacing:.16em;color:var(--accent-ink);
+  margin-bottom:22px;
+}
+
+/* hero */
+.hero{padding:76px 0 72px;background:var(--paper);border-bottom:1px solid var(--line);}
+
+h1{
+  font-size:60px;line-height:1.04;letter-spacing:-.04em;
+  font-weight:300;margin:0 0 24px;max-width:860px;
+}
+h1 em{
+  font-family:"Instrument Serif",serif;font-style:italic;
+  color:var(--accent-ink);font-weight:400;
+}
+
+.hero-lede{
+  font-size:19px;font-weight:300;color:var(--ink-2);
+  max-width:660px;margin:0 0 40px;line-height:1.5;
+}
+
+/* stats */
+.stat-row{
+  display:flex;gap:0;border:1px solid var(--line);border-radius:6px;
+  overflow:hidden;margin-bottom:36px;max-width:820px;
+}
+.stat{
+  flex:1;padding:22px 24px;background:var(--bg);
+  border-right:1px solid var(--line);
+}
+.stat:last-child{border-right:none;}
+.stat-n{
+  display:block;font-size:32px;font-weight:300;letter-spacing:-.03em;
+  color:var(--accent-ink);font-family:"IBM Plex Mono",monospace;
+  margin-bottom:6px;
+}
+.stat-l{display:block;font-size:13px;color:var(--ink-3);line-height:1.4;}
+
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* content sections */
+.section{padding:64px 0;background:var(--paper);}
+.section.alt{background:var(--bg);}
+
+h2{
+  font-size:36px;font-weight:300;letter-spacing:-.03em;
+  margin:0 0 20px;line-height:1.15;
+}
+h2 em{
+  font-family:"Instrument Serif",serif;font-style:italic;
+  color:var(--accent-ink);font-weight:400;
+}
+
+.section-label{
+  font-family:"IBM Plex Mono",monospace;text-transform:uppercase;
+  font-size:10.5px;letter-spacing:.18em;color:var(--ink-3);
+  margin-bottom:16px;
+}
+
+p{font-size:16px;color:var(--ink-2);line-height:1.7;margin:0 0 18px;}
+p:last-child{margin-bottom:0;}
+strong{color:var(--ink);font-weight:600;}
+
+/* comparison block */
+.compare-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin-top:28px;max-width:820px;
+}
+.compare-card{
+  border:1px solid var(--line);border-radius:6px;
+  background:var(--bg);padding:24px 26px;
+}
+.compare-card.highlight{
+  border-color:oklch(.78 .06 268);
+  background:oklch(.95 .018 268);
+}
+.compare-card h3{
+  font-size:14px;font-weight:600;font-family:"IBM Plex Mono",monospace;
+  text-transform:uppercase;letter-spacing:.1em;margin:0 0 14px;
+  color:var(--ink-3);
+}
+.compare-card.highlight h3{color:var(--accent-ink);}
+.compare-card ul{
+  margin:0;padding:0 0 0 16px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.compare-card li{font-size:14.5px;color:var(--ink-2);line-height:1.5;}
+.compare-card.highlight li{color:var(--ink);}
+
+/* loop cycle strip */
+.cycle-strip{
+  display:flex;flex-wrap:wrap;gap:0;
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  margin-top:28px;
+}
+.cycle-stage{
+  flex:1;min-width:130px;padding:20px 18px;background:var(--paper);
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:flex;flex-direction:column;gap:6px;
+}
+.cycle-stage:last-child{border-right:none;}
+.cycle-n{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;
+  color:var(--accent-ink);text-transform:uppercase;letter-spacing:.14em;
+}
+.cycle-name{font-size:15.5px;font-weight:600;color:var(--ink);letter-spacing:-.01em;}
+.cycle-desc{font-size:12.5px;color:var(--ink-3);line-height:1.5;}
+
+/* process steps */
+.process-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border:1px solid var(--line);border-radius:6px;
+  overflow:hidden;margin-top:28px;
+}
+.process-step{
+  padding:24px 22px;background:var(--paper);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:10px;
+}
+.process-step:last-child{border-right:none;}
+.process-step-n{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;
+  color:var(--accent-ink);text-transform:uppercase;letter-spacing:.16em;
+}
+.process-step-title{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.01em;}
+.process-step-sub{font-size:13.5px;color:var(--ink-2);line-height:1.5;}
+
+/* quickstart */
+.quickstart-box{
+  border:1px solid var(--line);border-radius:6px;
+  overflow:hidden;max-width:640px;
+  margin-top:28px;
+}
+.quickstart-bar{
+  padding:11px 18px;background:var(--bg-2);border-bottom:1px solid var(--line);
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3);
+}
+pre{
+  margin:0;padding:20px 18px;
+  font-family:"IBM Plex Mono",monospace;font-size:13px;
+  line-height:1.7;color:var(--ink);background:var(--paper);
+}
+
+/* tool callout */
+.tool-callout{
+  margin-top:20px;padding:14px 18px;
+  border:1px solid var(--line);border-radius:6px;
+  background:var(--paper);
+  display:flex;align-items:flex-start;gap:16px;
+}
+.tool-callout-label{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:.14em;
+  color:var(--accent-ink);white-space:nowrap;flex-shrink:0;padding-top:2px;
+}
+.tool-callout p{
+  margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.5;
+}
+
+/* faq */
+.faq-list{
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  margin-top:24px;
+}
+.faq-item{
+  padding:22px 26px;border-bottom:1px solid var(--line);
+  background:var(--paper);
+}
+.faq-item:last-child{border-bottom:none;}
+.faq-item h3{
+  font-size:17px;font-weight:500;letter-spacing:-.01em;
+  color:var(--ink);margin:0 0 8px;
+}
+.faq-item p{font-size:14.5px;}
+
+/* cta section */
+.cta-section{
+  padding:64px 0;border-top:1px solid var(--line);
+  background:var(--paper);
+}
+.cta-inner{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:40px;flex-wrap:wrap;
+}
+.cta-text h2{margin-bottom:12px;}
+.cta-text p{max-width:540px;}
+.cta-actions{display:flex;flex-direction:column;gap:12px;flex-shrink:0;padding-top:8px;}
+
+/* footer */
+footer{padding:32px 0;border-top:1px solid var(--line);}
+.footer-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:20px;
+}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap;}
+.footer-links a{
+  text-decoration:none;color:var(--ink-2);
+  font-family:"IBM Plex Mono",monospace;font-size:12px;
+}
+.footer-tag{
+  font-family:"Instrument Serif",serif;color:var(--ink-3);font-style:italic;
+}
+
+@media(max-width:760px){
+  .wrap{padding:0 22px;}
+  h1{font-size:38px;}
+  h2{font-size:28px;}
+  .stat-row{flex-direction:column;}
+  .stat{border-right:none;border-bottom:1px solid var(--line);}
+  .stat:last-child{border-bottom:none;}
+  .compare-grid{grid-template-columns:1fr;}
+  .cycle-strip{flex-direction:column;}
+  .cycle-stage{border-right:none;}
+  .process-steps{grid-template-columns:1fr 1fr;}
+  .cta-inner{flex-direction:column;}
+  .nav{display:none;}
+  .tool-callout{flex-direction:column;gap:8px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap site-inner">
+    <a class="brand" href="/" aria-label="Design a Loop home">
+      <span class="name">Design a Loop</span>
+    </a>
+    <nav class="nav">
+      <a href="#definition">The loop</a>
+      <a href="#anatomy">Anatomy</a>
+      <a href="#vs-prompt-engineering">vs prompt engineering</a>
+      <a href="#tool">The tool</a>
+      <a href="/loop-engineering" style="color:var(--accent-ink);">Loop engineering</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn" href="https://github.com/3IVIS/buildaharness">Get the tool</a>
+  </div>
+</header>
+
+
+<section class="hero">
+  <div class="wrap">
+
+    <div class="eyebrow">A CONTENT PROJECT BY 3IVIS · POWERED BY BUILD A HARNESS · APACHE 2.0</div>
+
+    <h1>
+      Every agent runs on a loop.<br>
+      Most teams never <em>design it.</em>
+    </h1>
+
+    <p class="hero-lede">
+      Design a Loop is where the discipline of <strong>loop engineering</strong> lives — designing the iterative perceive-reason-decide-act-verify-recover cycle an AI agent runs on every turn, deliberately, instead of letting one emerge by accident from glue code.
+    </p>
+
+    <div class="stat-row" role="list">
+      <div class="stat" role="listitem">
+        <span class="stat-n">88%</span>
+        <span class="stat-l">of AI agent projects never reach production — the bottleneck is the loop, not the model</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-n">7</span>
+        <span class="stat-l">stages in a fully engineered agent loop — perceive through learn, then repeat</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-n">~1.6%</span>
+        <span class="stat-l">of a production agent is the model's decision logic — the rest is the loop around it</span>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn" href="/loop-engineering">Read the full discipline →</a>
+      <a class="btn btn-ghost" href="https://buildaharness.com">See the tool — Build A Harness ↗</a>
+      <a class="btn btn-ghost" href="https://github.com/3IVIS/buildaharness">GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section" id="definition">
+  <div class="wrap prose">
+
+    <div class="section-label">DEFINITION</div>
+    <h2>What is <em>loop engineering?</em></h2>
+
+    <p>
+      Loop engineering is the discipline of designing the iterative cycle an AI agent runs on every turn: what it perceives, what it believes, what it is allowed to do, how it verifies its own output, and how it recovers when a step fails — before looping back and doing it again.
+    </p>
+
+    <p>
+      Every agent that does more than answer one question is already running on a loop, whether anyone designed one or not. Left undesigned, that loop degrades in predictable ways: it retries forever when a tool fails, it drifts as early mistakes compound across iterations, and it can't tell the difference between "done" and "stuck." Loop engineering treats the cycle itself — not the prompt, not the model choice — as the primary thing you design.
+    </p>
+
+    <p>
+      <a href="/loop-engineering" style="color:var(--accent-ink);">Read the full definition, comparisons, and anatomy →</a>
+    </p>
+
+  </div>
+</section>
+
+
+<section class="section alt" id="anatomy">
+  <div class="wrap">
+
+    <div class="section-label">ANATOMY</div>
+    <h2>The loop, <em>stage by stage.</em></h2>
+
+    <p class="prose" style="margin-bottom:0;">
+      A fully engineered agent loop runs through seven stages, then repeats. Miss one, and a specific, predictable failure mode shows up in production.
+    </p>
+
+    <div class="cycle-strip">
+      <div class="cycle-stage">
+        <span class="cycle-n">1</span>
+        <span class="cycle-name">Perceive</span>
+        <span class="cycle-desc">World model — typed beliefs, staleness tracking</span>
+      </div>
+      <div class="cycle-stage">
+        <span class="cycle-n">2</span>
+        <span class="cycle-name">Reason</span>
+        <span class="cycle-desc">Evidence + hypotheses before committing</span>
+      </div>
+      <div class="cycle-stage">
+        <span class="cycle-n">3</span>
+        <span class="cycle-name">Decide</span>
+        <span class="cycle-desc">5-tier control state, every iteration</span>
+      </div>
+      <div class="cycle-stage">
+        <span class="cycle-n">4</span>
+        <span class="cycle-name">Act</span>
+        <span class="cycle-desc">Reversibility-aware execution</span>
+      </div>
+      <div class="cycle-stage">
+        <span class="cycle-n">5</span>
+        <span class="cycle-name">Verify</span>
+        <span class="cycle-desc">9 layers + adversarial review</span>
+      </div>
+      <div class="cycle-stage">
+        <span class="cycle-n">6</span>
+        <span class="cycle-name">Recover</span>
+        <span class="cycle-desc">Named strategies, not silent retries</span>
+      </div>
+      <div class="cycle-stage">
+        <span class="cycle-n">7</span>
+        <span class="cycle-name">Learn &amp; Repeat</span>
+        <span class="cycle-desc">Warm-start next run, loop to Stage 1</span>
+      </div>
+    </div>
+
+    <p style="margin-top:20px;">
+      <a href="/loop-engineering#anatomy" style="color:var(--accent-ink);">See what each stage catches, and what breaks without it →</a>
+    </p>
+
+  </div>
+</section>
+
+
+<section class="section" id="vs-prompt-engineering">
+  <div class="wrap">
+
+    <div class="section-label">COMPARISON</div>
+    <h2>Loop engineering vs <em>prompt engineering</em></h2>
+
+    <p class="prose" style="margin-bottom:0;">
+      Both matter. But they operate at different points in the cycle, and the returns on each are not equal in production.
+    </p>
+
+    <div class="compare-grid">
+
+      <div class="compare-card">
+        <h3>Prompt engineering</h3>
+        <ul>
+          <li>Optimises the input to a single model call</li>
+          <li>Asks: <em>"How should I phrase this?"</em></li>
+          <li>Scope: one call, one response</li>
+          <li>Reliability gain beyond a baseline: &lt;3%</li>
+        </ul>
+      </div>
+
+      <div class="compare-card highlight">
+        <h3>Loop engineering</h3>
+        <ul>
+          <li>Designs what happens between calls, and how many times the cycle runs</li>
+          <li>Asks: <em>"What should this loop do after each pass, and when should it stop?"</em></li>
+          <li>Scope: every iteration, every tool, every failure, every run</li>
+          <li>Reliability gain from loop-level changes: 28–47%</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section alt" id="tool">
+  <div class="wrap">
+
+    <div class="section-label">THE TOOL</div>
+    <h2>Design once. <em>Run any framework.</em></h2>
+
+    <p class="prose" style="margin-bottom:0;">
+      <a href="https://buildaharness.com" style="color:var(--accent-ink);">Build A Harness</a> is the open-source tool built for this discipline — a visual canvas that implements all seven loop stages as drawable, composable nodes, and compiles to any major agent framework.
+    </p>
+
+    <div class="process-steps">
+
+      <div class="process-step">
+        <span class="process-step-n">Step 1 — Design</span>
+        <span class="process-step-title">Visual canvas</span>
+        <span class="process-step-sub">Draw the loop with 27 node types — 14 execution nodes and 13 loop-control nodes.</span>
+      </div>
+
+      <div class="process-step">
+        <span class="process-step-n">Step 2 — Compile</span>
+        <span class="process-step-title">FlowSpec</span>
+        <span class="process-step-sub">Exports to a runtime-neutral JSON format that runs on any supported framework.</span>
+      </div>
+
+      <div class="process-step">
+        <span class="process-step-n">Step 3 — Run</span>
+        <span class="process-step-title">Any framework</span>
+        <span class="process-step-sub">LangGraph, CrewAI, Mastra, Microsoft Agent Framework, or A2A — same design.</span>
+      </div>
+
+      <div class="process-step">
+        <span class="process-step-n">Step 4 — Observe</span>
+        <span class="process-step-title">Langfuse</span>
+        <span class="process-step-sub">Every iteration traced automatically, including world model and control state changes.</span>
+      </div>
+
+    </div>
+
+    <div class="quickstart-box">
+      <div class="quickstart-bar">shell</div>
+      <pre><span style="color:var(--ink-3)"># Two commands, everything local</span>
+git clone https://github.com/3IVIS/buildaharness.git &amp;&amp; cd buildaharness
+./scripts/setup-env.sh &amp;&amp; docker compose up</pre>
+    </div>
+
+    <p style="margin-top:20px;">
+      Apache 2.0. <a href="https://github.com/3IVIS/buildaharness" style="color:var(--accent-ink);">Source on GitHub →</a> · <a href="https://buildaharness.com" style="color:var(--accent-ink);">buildaharness.com →</a>
+    </p>
+
+  </div>
+</section>
+
+
+<section class="section" id="faq">
+  <div class="wrap prose">
+
+    <div class="section-label">FAQ</div>
+    <h2>Questions, <em>answered.</em></h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <h3>What is loop engineering?</h3>
+        <p>The discipline of designing the iterative cycle an AI agent runs on every turn — perceive, reason, decide, act, verify, recover, repeat — instead of letting one emerge by accident. <a href="/loop-engineering" style="color:var(--accent-ink);">Read the full definition →</a></p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is loop engineering the same as harness engineering?</h3>
+        <p>Yes — two names for the same discipline, from two angles. <a href="https://buildaharness.com/harness-engineering" style="color:var(--accent-ink);">Harness engineering</a> emphasizes the constraint structure around the model; loop engineering emphasizes the iterative cycle that structure runs on.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What tool do I use to build a loop?</h3>
+        <p><a href="https://buildaharness.com" style="color:var(--accent-ink);">Build A Harness</a> — an open-source visual canvas that implements a fully engineered agent loop as drawable nodes, and compiles to LangGraph, CrewAI, Mastra, or Microsoft Agent Framework. Apache 2.0, runs locally via Docker.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Where do I go for the deep dive?</h3>
+        <p>The <a href="/loop-engineering" style="color:var(--accent-ink);">Loop Engineering</a> page covers the full definition, the loop vs. workflows, loop vs. prompt engineering, and a stage-by-stage breakdown of what breaks without each one.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="cta-section">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <div class="section-label">DESIGN A LOOP · POWERED BY BUILD A HARNESS</div>
+        <h2>Stop letting the loop<br>happen <em>by accident.</em></h2>
+        <p>Build A Harness implements the full seven-stage loop — world model, control state, verification, recovery, and cross-run learning — as drawable, composable nodes. Apache 2.0. Runs locally via Docker.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn" href="https://github.com/3IVIS/buildaharness">Star on GitHub</a>
+        <a class="btn btn-ghost" href="https://buildaharness.com">Explore Build A Harness →</a>
+        <a class="btn btn-ghost" href="/loop-engineering">Read the discipline →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/3IVIS/buildaharness">GitHub</a>
+      <a href="https://buildaharness.com">Build A Harness</a>
+      <a href="/loop-engineering">Loop engineering</a>
+      <a href="https://github.com/3IVIS/buildaharness/blob/main/LICENSE">Apache 2.0</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/impressum.html">Impressum</a>
+      <a href="#" onclick="if(window.klaro)klaro.show();return false;">Cookie Settings</a>
+    </div>
+    <div class="footer-tag">
+      Design the loop. Ship it anywhere.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
